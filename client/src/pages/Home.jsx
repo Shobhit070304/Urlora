@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import UrlShortner from "../components/UrlShortner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   return (
@@ -11,8 +13,20 @@ const Home = () => {
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-800 bg-[length:400%_400%] animate-gradient z-0"
         style={{ backgroundSize: "400% 400%" }}
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
         transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+      />
+      {/* Toast Container for Notifications */}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
       />
 
       {/* Content Layer */}

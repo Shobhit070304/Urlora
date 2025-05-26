@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { AuthContext } from "../context/UserContext";
+import { toast } from "react-toastify";
 
 function UrlShortner() {
   const [shortUrl, setShortUrl] = useState("");
   const [longUrl, setLongUrl] = useState("");
-  const [error, setError] = useState("");
+  const [errorShort, setErrorShort] = useState("");
+  const [errorLong, setErrorLong] = useState("");
   const [generatedShortUrl, setGeneratedShortUrl] = useState("");
   const [retrivedLongUrl, setRetrivedLongUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { user } = useContext(AuthContext);
+
   const handleShortenUrl = async () => {
-    setError("");
+    if (!user) {
+      toast.error("Please login to use the URL shortener");
+      return;
+    }
+    setErrorShort("");
     setGeneratedShortUrl("");
     setLoading(true);
 
@@ -23,20 +32,26 @@ function UrlShortner() {
         }
       );
       if (response.data.status) {
+        toast.success("Short URL generated successfully!");
         setGeneratedShortUrl(response.data.shortUrl);
       } else {
-        setError(response.data.error || "Failed to generate short URL");
+        toast.error("Failed to generate short URL");
+        setErrorShort(response.data.error || "Failed to generate short URL");
       }
     } catch (err) {
-      console.error(err);
-      setError("An error occurred while generating the short URL");
+      toast.error("An error occurred while generating the short URL");
+      setErrorShort("An error occurred while generating the short URL");
     } finally {
       setLoading(false);
     }
   };
 
   const handleOriginalUrl = async () => {
-    setError("");
+    if (!user) {
+      toast.error("Please login to retrieve the original URL");
+      return;
+    }
+    setErrorLong("");
     setRetrivedLongUrl("");
     setLoading(true);
 
@@ -46,13 +61,15 @@ function UrlShortner() {
         { shortUrl: shortUrl }
       );
       if (response.data.status) {
+        toast.success("Original URL retrieved successfully!");
         setRetrivedLongUrl(response.data.longUrl);
       } else {
-        setError(response.data.error || "Failed to retrieve original URL");
+        toast.error("Failed to retrieve original URL");
+        setErrorLong(response.data.error || "Failed to retrieve original URL");
       }
     } catch (err) {
-      console.error(err);
-      setError("An error occurred while retrieving the original URL");
+      toast.error("An error occurred while retrieving the original URL");
+      setErrorLong("An error occurred while retrieving the original URL");
     } finally {
       setLoading(false);
     }
@@ -85,7 +102,9 @@ function UrlShortner() {
           >
             Generate Short URL
           </button>
-          {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
+          {errorShort && (
+            <p className="mt-2 text-red-500 text-sm">{errorShort}</p>
+          )}
           {generatedShortUrl && (
             <p className="mt-2 text-green-500 text-sm">
               Short URL:{" "}
@@ -116,7 +135,9 @@ function UrlShortner() {
           >
             Get Original URL
           </button>
-          {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
+          {errorLong && (
+            <p className="mt-2 text-red-500 text-sm">{errorLong}</p>
+          )}
           {retrivedLongUrl && (
             <p className="mt-2 text-green-500 text-sm">
               Original URL:{" "}
