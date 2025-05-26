@@ -1,4 +1,4 @@
-function encodeBase62(number) {
+export function encodeBase62(number) {
   let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let result = "";
 
