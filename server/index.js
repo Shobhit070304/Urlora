@@ -1,24 +1,50 @@
 import express from "express";
 import cors from "cors";
-import { createClient } from "redis";
+import dotenv from "dotenv";
 import { encodeBase62 } from "./services/helper.js";
+import { Redis } from "@upstash/redis";
+dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-//Initialize Redis
-const redisClient = createClient({
-  url: "redis://localhost:6379",
-});
+const MAX_RETRIES = 5;
+let redisClient = null;
 
-redisClient.on("connect", () => {
-  console.log("Redis is Connected");
-});
-redisClient.on("error", (err) => {
-  console.log("Redis Connection Failed", err);
-});
+async function connectToRedis(retries = MAX_RETRIES) {
+  while (retries > 0) {
+    try {
+      redisClient = new Redis({
+        url: process.env.UPSTASH_REDIS_REST_URL,
+        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      });
+
+      await redisClient.ping();
+      console.log("Connected to Redis successfully");
+      return redisClient;
+    } catch (error) {
+      console.error(
+        `Redis connection failed. Retries left: ${retries - 1}`,
+        error
+      );
+      retries--;
+
+      if (retries === 0) {
+        console.error("Failed to connect to Redis after multiple attempts");
+        return res.status(500).json({
+          status: false,
+          error: "Failed to connect to Redis after multiple attempts",
+        });
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+}
+
+connectToRedis();
 
 app.get("/", (req, res) => {
   res.send("Hello from Backend");
@@ -27,7 +53,6 @@ app.get("/", (req, res) => {
 // Shorten URL
 app.post("/api/shorten", async (req, res) => {
   const { longUrl } = req.body;
-  console.log(req.body);
   if (!longUrl) {
     return res
       .status(400)
@@ -36,8 +61,9 @@ app.post("/api/shorten", async (req, res) => {
     try {
       const id = await redisClient.incr("counter");
       const shortUrl = encodeBase62(id);
-
-      await redisClient.hSet("urls", shortUrl, longUrl);
+      await redisClient.hset("urls", {
+        [shortUrl]: longUrl,
+      });
 
       return res.status(200).json({
         status: true,
@@ -55,8 +81,13 @@ app.post("/api/shorten", async (req, res) => {
 // Redirect to Long URL
 app.post("/api/original", async (req, res) => {
   const { shortUrl } = req.body;
+  if (!shortUrl) {
+    return res
+      .status(400)
+      .json({ status: false, error: "Short URL is required" });
+  }
   try {
-    const longUrl = await redisClient.hGet("urls", shortUrl);
+    const longUrl = await redisClient.hget("urls", shortUrl);
     if (!longUrl) {
       return res.status(404).json({ status: false, error: "URL not found" });
     }
@@ -76,7 +107,7 @@ app.post("/api/original", async (req, res) => {
 app.get("/:shortUrl", async (req, res) => {
   const { shortUrl } = req.params;
   try {
-    const longUrl = await redisClient.hGet("urls", shortUrl);
+    const longUrl = await redisClient.hget("urls", shortUrl);
     if (!longUrl) {
       return res.status(404).json({ status: false, error: "URL not found" });
     }
@@ -91,7 +122,7 @@ app.get("/:shortUrl", async (req, res) => {
 
 app.listen(8000, async () => {
   try {
-    await redisClient.connect();
+    // await redisClient.connect();
     console.log("Server is running on PORT 8000");
   } catch (error) {
     console.error(error);

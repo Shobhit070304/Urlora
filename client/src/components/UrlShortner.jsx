@@ -116,6 +116,7 @@ function UrlShortner() {
           >
             Get Original URL
           </button>
+          {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
           {retrivedLongUrl && (
             <p className="mt-2 text-green-500 text-sm">
               Original URL:{" "}
