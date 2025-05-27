@@ -9,7 +9,7 @@ function CTA() {
           Ready for the future of links?
         </h2>
         <p className="text-gray-400 mb-10 max-w-2xl">
-          Join the pioneers revolutionizing digital connections.
+          Be part of the new wave changing how we share online.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link

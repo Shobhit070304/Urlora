@@ -13,8 +13,8 @@ function Hero() {
           link management
         </h1>
         <p className="text-xl text-gray-400 mb-12 max-w-3xl">
-          The most advanced URL shortener with futuristic analytics and
-          enterprise-grade security.
+          A smart URL shortener with easy-to-understand analytics and reliable
+          security for everyday use.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-grow max-w-2xl">
@@ -30,9 +30,12 @@ function Hero() {
               Shorten <FaArrowRight className="ml-2" />
             </Link>
           </div>
-          <button className="px-6 py-5 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg hover:bg-gray-800/50 transition-colors duration-300">
+          <a
+            href="#features"
+            className="px-6 py-5 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg hover:bg-gray-800/50 transition-colors duration-300"
+          >
             Explore Features
-          </button>
+          </a>
         </div>
       </div>
     </section>

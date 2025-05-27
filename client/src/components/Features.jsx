@@ -17,9 +17,9 @@ function Features() {
             <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/10 to-purple-600/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors duration-300">
               <FaLink className="text-indigo-400 group-hover:text-indigo-300 text-xl transition-colors duration-300" />
             </div>
-            <h3 className="text-xl font-medium mb-3">Quantum Links</h3>
+            <h3 className="text-xl font-medium mb-3">Quick Links</h3>
             <p className="text-gray-400">
-              Ultra-fast, globally distributed short URLs with 99.99% uptime.
+              Fast and easy URL shortener with reliable uptime.
             </p>
           </div>
 
@@ -27,9 +27,9 @@ function Features() {
             <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/10 to-purple-600/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors duration-300">
               <FaChartLine className="text-indigo-400 group-hover:text-indigo-300 text-xl transition-colors duration-300" />
             </div>
-            <h3 className="text-xl font-medium mb-3">Holographic Analytics</h3>
+            <h3 className="text-xl font-medium mb-3">Simple Analytics</h3>
             <p className="text-gray-400">
-              Real-time 3D data visualization with AI-powered insights.
+              Basic real-time stats to track your link usage.
             </p>
           </div>
 
@@ -37,9 +37,9 @@ function Features() {
             <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/10 to-purple-600/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors duration-300">
               <FaLock className="text-indigo-400 group-hover:text-indigo-300 text-xl transition-colors duration-300" />
             </div>
-            <h3 className="text-xl font-medium mb-3">Neural Security</h3>
+            <h3 className="text-xl font-medium mb-3">Secure Access</h3>
             <p className="text-gray-400">
-              Blockchain-verified link protection with quantum encryption.
+              Easy link protection with safe data handling.
             </p>
           </div>
         </div>
