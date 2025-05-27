@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { Sparkles } from "lucide-react";
-import Auth from "./Auth";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/UserContext";
+import { FaLink } from "react-icons/fa";
 
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -11,39 +10,42 @@ function Navbar() {
   const avatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${randomSeed}`;
 
   return (
-    <nav className="w-full flex items-center justify-between px-[10%] py-4 bg-zinc-900/70 backdrop-blur-lg border-b border-zinc-700 shadow-sm">
-      <div className="flex items-center gap-2 text-white text-2xl font-bold tracking-wide">
-        <Sparkles className="text-purple-500" size={22} />
-        <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text">
-          Urlora
+    <nav className="container mx-auto px-6 py-8 flex justify-between items-center z-10">
+      <div className="flex items-center space-x-3">
+        <FaLink className="text-indigo-400 text-2xl" />
+        <span className="text-2xl font-light tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
+          LINKLY
         </span>
       </div>
-      {user ? (
-        <div className="flex gap-5 text-zinc-300 text-sm">
-          <img
-            src={avatar}
-            alt="User Avatar"
-            className="w-10 h-10 rounded-full mx-auto mb-4 border-4 border-blue-500"
-          />
+      <div className="hidden md:flex items-center space-x-10">
+        <Link
+          to="/home"
+          className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-900/50 px-4 py-2 rounded-lg"
+        >
+          Home
+        </Link>
 
-          <Link
-            to="/"
-            onClick={logout}
-            className="bg-gradient-to-r from-red-500 to-red-600 hover:bg-red-700 h-10 text-white px-4 py-2 rounded-md transition-all duration-300"
-          >
-            Logout
-          </Link>
-        </div>
-      ) : (
-        <div className="gap-5 text-zinc-300 text-sm">
-          <Link
-            to="/auth"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-md transition-all duration-300"
-          >
-            Login
-          </Link>
-        </div>
-      )}
+        <Link
+          to="/features"
+          className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-900/50 px-4 py-2 rounded-lg"
+        >
+          Features
+        </Link>
+      </div>
+      <div className="flex items-center space-x-4">
+        <Link
+          to="/auth"
+          className="px-5 py-2 text-sm text-white font-medium border border-gray-800 rounded-lg hover:bg-gray-900/50 transition-colors duration-300 backdrop-blur-sm"
+        >
+          Sign In
+        </Link>
+        <Link
+          to="/home"
+          className="px-5 py-2 text-sm font-medium bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity duration-300 backdrop-blur-sm"
+        >
+          Get Started
+        </Link>
+      </div>
     </nav>
   );
 }

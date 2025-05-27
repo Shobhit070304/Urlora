@@ -5,16 +5,11 @@ import Footer from "../components/Footer";
 import UrlShortner from "../components/UrlShortner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FuturisticBackground from "../components/Background";
 
 const Home = () => {
   return (
     <div className="min-h-screen w-full relative overflow-hidden font-sans">
-      {/* Animated Dark Background */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-800 bg-[length:400%_400%] animate-gradient z-0"
-        style={{ backgroundSize: "400% 400%" }}
-        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-      />
       {/* Toast Container for Notifications */}
       <ToastContainer
         position="top-center"
@@ -28,6 +23,8 @@ const Home = () => {
         pauseOnHover
         theme="dark"
       />
+      {/* Futuristic 3D Background */}
+      <FuturisticBackground />
 
       {/* Content Layer */}
       <div className="relative z-10">

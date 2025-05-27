@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Auth from "./components/Auth";
 import LandingPage from "./pages/LandingPage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
