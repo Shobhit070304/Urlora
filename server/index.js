@@ -9,10 +9,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://linkly-orcin.vercel.app", // exact frontend domain
+    origin: "*", // OR: 'http://localhost:3000' or the frontend URL
     credentials: true,
   })
 );
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const MAX_RETRIES = 5;
