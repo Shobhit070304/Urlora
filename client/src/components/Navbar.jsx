@@ -32,19 +32,21 @@ function Navbar() {
         </Link>
       </div>
       <div className="hidden md:flex items-center space-x-10">
-        <Link
-          to="/home"
-          className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-700/50 px-4 py-2 rounded-lg"
-        >
-          Home
-        </Link>
         {path === "" && (
-          <a
-            href="#features"
-            className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-900/50 px-4 py-2 rounded-lg"
-          >
-            Features
-          </a>
+          <>
+            <Link
+              to="/home"
+              className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-700/50 px-4 py-2 rounded-lg"
+            >
+              Home
+            </Link>
+            <a
+              href="#features"
+              className="text-gray-400 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider hover:bg-gray-900/50 px-4 py-2 rounded-lg"
+            >
+              Features
+            </a>
+          </>
         )}
       </div>
       <div className="flex items-center space-x-4">
