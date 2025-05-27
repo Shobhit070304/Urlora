@@ -84,9 +84,6 @@ function UrlShortner() {
 
   return (
     <main className="flex flex-col items-center justify-center px-4 py-12">
-      {/* <h1 className="text-3xl md:text-5xl font-bold text-white mb-12 text-center tracking-tight leading-tight">
-        🚀 Your Ultimate URL Shortener
-      </h1> */}
 
       <h1 className="text-3xl md:text-4xl text-gray-400 font-light tracking-tight leading-tight mb-8">
         🚀
@@ -98,74 +95,6 @@ function UrlShortner() {
       <p className="text-xl text-gray-300 mb-12 max-w-3xl">
         Create, share, and track your links effortlessly — all in one place.
       </p>
-
-      {/* <div className="grid gap-10 w-full max-w-2xl"> */}
-      {/* Long to Short URL Section */}
-      {/* <div className="bg-zinc-900/70 backdrop-blur-md p-6 rounded-xl shadow-xl border border-zinc-700">
-          <h2 className="text-lg font-medium text-white mb-3 tracking-wide">
-            🔗 Convert Long URL to Short
-          </h2>
-          <input
-            type="text"
-            name="longUrl"
-            value={longUrl}
-            onChange={(e) => setLongUrl(e.target.value)}
-            placeholder="Enter long URL..."
-            className="w-full px-3 py-2 rounded-md bg-zinc-800 text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          <button
-            onClick={handleShortenUrl}
-            disabled={loading}
-            className="mt-3 w-full py-2 rounded-md bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-sm font-medium transition-all duration-300 shadow-sm"
-          >
-            Generate Short URL
-          </button>
-          {errorShort && (
-            <p className="mt-2 text-red-500 text-sm">{errorShort}</p>
-          )}
-          {generatedShortUrl && (
-            <p className="mt-2 text-green-500 text-sm">
-              Short URL:{" "}
-              <a href={generatedShortUrl} className="underline">
-                {generatedShortUrl}
-              </a>
-            </p>
-          )}
-        </div> */}
-
-      {/* Short to Long URL Section */}
-      {/* <div className="bg-zinc-900/70 backdrop-blur-md p-6 rounded-xl shadow-xl border border-zinc-700">
-          <h2 className="text-lg font-medium text-white mb-3 tracking-wide">
-            🧭 Expand Short URL to Long
-          </h2>
-          <input
-            type="text"
-            placeholder="Enter short URL..."
-            name="shortUrl"
-            value={shortUrl}
-            onChange={(e) => setShortUrl(e.target.value)}
-            className="w-full px-3 py-2 rounded-md bg-zinc-800 text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
-          />
-          <button
-            onClick={handleOriginalUrl}
-            disabled={loading}
-            className="mt-3 w-full py-2 rounded-md bg-gradient-to-r from-pink-600 to-red-500 hover:from-pink-700 hover:to-red-600 text-white text-sm font-medium transition-all duration-300 shadow-sm"
-          >
-            Get Original URL
-          </button>
-          {errorLong && (
-            <p className="mt-2 text-red-500 text-sm">{errorLong}</p>
-          )}
-          {retrivedLongUrl && (
-            <p className="mt-2 text-green-500 text-sm">
-              Original URL:{" "}
-              <a href={retrivedLongUrl} className="underline">
-                {retrivedLongUrl}
-              </a>
-            </p>
-          )}
-        </div> */}
-      {/* </div>  */}
       <div className="grid gap-6 w-full max-w-2xl">
         {/* Long to Short URL Section */}
         <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-800/90 backdrop-blur-md p-6 rounded-xl shadow-lg border border-zinc-700/50 hover:border-zinc-600 transition-all">
@@ -203,13 +132,6 @@ function UrlShortner() {
                 "Generate Short URL"
               )}
             </button>
-
-            {/* {errorShort && (
-              <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
-                <AlertCircleIcon className="h-4 w-4" />
-                <span>{errorShort}</span>
-              </div>
-            )} */}
 
             {generatedShortUrl && (
               <div className="mt-3">
@@ -275,13 +197,6 @@ function UrlShortner() {
                 "Get Original URL"
               )}
             </button>
-
-            {/* {errorLong && (
-              <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
-                <AlertCircleIcon className="h-4 w-4" />
-                <span>{errorLong}</span>
-              </div>
-            )} */}
 
             {retrivedLongUrl && (
               <div className="mt-3">

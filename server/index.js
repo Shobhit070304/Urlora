@@ -7,7 +7,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const MAX_RETRIES = 5;
@@ -67,7 +72,7 @@ app.post("/api/shorten", async (req, res) => {
 
       return res.status(200).json({
         status: true,
-        shortUrl: `http://localhost:8000/${shortUrl}`,
+        shortUrl: process.env.BACKEND_URL + shortUrl,
       });
     } catch (error) {
       console.error(error);

@@ -21,16 +21,19 @@ const Auth = () => {
   };
 
   const loginWithGithub = async () => {
-    try {
-      console.log("Attempting GitHub login...");
-      const userData = await signInWithPopup(auth, githubProvider);
-      console.log("GitHub User Data:", userData);
-      login(userData.user);
-      navigate("/home");
-    } catch (error) {
-      console.log("GitHub login error:", error);
-      toast.error("GitHub login failed. Please try again.");
-    }
+    toast.error(
+      "GitHub login is currently disabled. Please use Google to sign in."
+    );
+    // try {
+    //   console.log("Attempting GitHub login...");
+    //   const userData = await signInWithPopup(auth, githubProvider);
+    //   console.log("GitHub User Data:", userData);
+    //   login(userData.user);
+    //   navigate("/home");
+    // } catch (error) {
+    //   console.log("GitHub login error:", error);
+    //   toast.error("GitHub login failed. Please try again.");
+    // }
   };
 
   const randomSeed = user?.name + Math.floor(Math.random() * 10000);
@@ -70,7 +73,7 @@ const Auth = () => {
               <div className="space-y-4">
                 <button
                   onClick={loginWithGoogle}
-                  className="w-full flex items-center justify-center gap-3 bg-gray-700 hover:bg-gray-600 transition-colors duration-200 text-white font-medium py-3 px-4 rounded-lg border border-gray-600"
+                  className="w-full flex items-center justify-center gap-3 cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors duration-200 text-white font-medium py-3 px-4 rounded-lg border border-gray-600"
                 >
                   <svg
                     className="w-5 h-5"
@@ -99,7 +102,7 @@ const Auth = () => {
 
                 <button
                   onClick={loginWithGithub}
-                  className="w-full flex items-center justify-center gap-3 bg-gray-900 hover:bg-gray-800 transition-colors duration-200 text-white font-medium py-3 px-4 rounded-lg border border-gray-700"
+                  className="w-full flex items-center justify-center cursor-pointer gap-3 bg-gray-900 hover:bg-gray-800 transition-colors duration-200 text-white font-medium py-3 px-4 rounded-lg border border-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
