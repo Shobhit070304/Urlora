@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://linkly-orcin.vercel.app", // exact frontend domain
     credentials: true,
   })
 );
